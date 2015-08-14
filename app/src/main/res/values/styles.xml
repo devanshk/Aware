@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Use this style name to override the default style -->
+    <style name="ExpandableView_TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <!--PreferenceActivity-->
+    <style name="PreferencesTheme">
+        <item name="android:background">#ff3e3e3e</item>
+        <item name="android:color">@color/dark_primary</item>
+        <item name="android:actionBarStyle">@style/PrefActionBar</item>
+    </style>
+
+    <style name="PrefActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:drawable">@color/dark_primary</item>
+    </style>
+
+</resources>

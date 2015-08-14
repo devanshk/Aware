@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2011 The Android Open Source Project
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <style name="Theme.Customgenerated" parent="@style/Theme.AppCompat">
+        <item name="actionBarItemBackground">@drawable/selectable_background_customgenerated</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Customgenerated</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Customgenerated</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Customgenerated</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Customgenerated</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Customgenerated</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_customgenerated</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_customgenerated</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Customgenerated</item>
+    </style>
+
+    <style name="ActionBar.Solid.Customgenerated" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@drawable/ab_solid_customgenerated</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_customgenerated</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_customgenerated</item>
+        <item name="progressBarStyle">@style/ProgressBar.Customgenerated</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Customgenerated" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/ab_transparent_customgenerated</item>
+        <item name="progressBarStyle">@style/ProgressBar.Customgenerated</item>
+    </style>
+	
+    <style name="PopupMenu.Customgenerated" parent="@style/Widget.AppCompat.PopupMenu">	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_customgenerated</item>	
+    </style>
+	
+    <style name="DropDownListView.Customgenerated" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_customgenerated</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Customgenerated" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_customgenerated</item>
+    </style>
+	
+    <style name="DropDownNav.Customgenerated" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_customgenerated</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_customgenerated</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_customgenerated</item>
+    </style>
+    
+    <style name="ProgressBar.Customgenerated" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_customgenerated</item>
+    </style>
+    
+    <style name="ActionButton.CloseMode.Customgenerated" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_customgenerated</item>
+    </style>
+    
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Customgenerated.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Customgenerated</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Customgenerated</item>
+    </style>
+
+</resources>

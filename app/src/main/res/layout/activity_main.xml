@@ -1,0 +1,63 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#ff3e3e3e">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ff3e3e3e"
+        android:id="@+id/parent_layout">
+
+        <TextView
+            android:id="@+id/debug_text"
+            android:text="Proximity:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/on_off_layout_background"
+            android:translationZ="5dp"
+
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remain Oblivious"
+                android:layout_gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="#303F9F"
+                android:layout_marginLeft="15dp"/>
+
+            <Switch
+                android:id="@+id/onOffSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Become Aware"
+                android:layout_gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="#FF4081"
+                android:layout_marginRight="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

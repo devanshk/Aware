@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Aware</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <item type="id" name="TAG_ACTION_INDEX"/>
+    <item type="id" name="Tag_REACTION_INDEX"/>
+    <item type="id" name="TAG_REACTION"/>
+</resources>

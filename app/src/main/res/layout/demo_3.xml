@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/dark_primary">
+
+    <ImageView
+        android:id="@+id/demo3_phone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/slide3"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"/>
+
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="...and then\nreacts to them"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"/>
+
+    <RelativeLayout
+        android:id="@+id/demo3_nexus_backdrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/demo3_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/nexus_awake"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/demo3_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="@color/secondary_text"
+            android:text="2:07"
+            android:layout_centerInParent="true"
+            android:paddingBottom="110dp"/>
+
+        <TextView
+            android:id="@+id/demo3_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/secondary_text"
+            android:text="Saturday, July 18"
+            android:layout_centerInParent="true"
+            android:paddingBottom="50dp"/>
+
+    </RelativeLayout>
+    -->
+
+</RelativeLayout>

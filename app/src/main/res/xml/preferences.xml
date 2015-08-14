@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Settings"
+        android:key="pref_key_calibration_settings">
+        <com.test.devanshk.proximitytest.WaveTimePreference
+            android:title="Calibrate Hand Wave"
+            android:key="pref_key_wave_time"/>
+
+        <com.test.devanshk.proximitytest.ShakePreference
+            android:title="Calibrate Shake"
+            android:key="pref_key_shake_dif"/>
+    </PreferenceCategory>
+</PreferenceScreen>
