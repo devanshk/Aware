@@ -235,6 +235,8 @@ public class MainActivity extends ActionBarActivity {
                 return "Wave Hand";
             case PulledOutOfPocket:
                 return "Pulled Out of Pocket";
+            case Thrown:
+                return "Thrown Into the Air";
         }
         return a.toString();
     }

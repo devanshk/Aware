@@ -31,7 +31,7 @@ public class AwareService extends Service implements SensorEventListener{
     private static final boolean selfish = false;
     private static final int buffer = 80;
 
-    enum Action {Wave, Shake, PulledOutOfPocket, None}
+    enum Action {Wave, Shake, PulledOutOfPocket, Thrown, None}
     enum Reactions {None, WakeUp, StartCamera, ToggleFlashlight}
     Sensor mProximity, mAccelerometer, mMagnetic;
     SensorManager mSensorManager;
@@ -188,14 +188,6 @@ public class AwareService extends Service implements SensorEventListener{
             case StartCamera:
                 //First first, let them know we're starting the camera
                 startCameraToast.show();
-
-                //Let's unlock the device
-                /*
-                KeyguardManager manager = (KeyguardManager) instance.getSystemService(Context.KEYGUARD_SERVICE);
-                KeyguardManager.KeyguardLock lock = manager.newKeyguardLock(null);
-                lock.disableKeyguard();
-                */
-
                 //...and also wake it up
                 PowerManager pm = (PowerManager) instance.getSystemService(Context.POWER_SERVICE);
                 PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
@@ -236,6 +228,7 @@ public class AwareService extends Service implements SensorEventListener{
                     }
                 }
                 break;
+
         }
     }
 

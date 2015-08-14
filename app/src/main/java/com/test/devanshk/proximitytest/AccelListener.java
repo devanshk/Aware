@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,12 +19,16 @@ import java.util.Date;
  */
 public class AccelListener implements SensorEventListener {
     private final int shakesNeeded = 5;
+    private final int freeFallCountsNeeded = 2;
     private static SharedPreferences prefs;
     private static float averageDelta = 4f;
 
     private Date lastShake;
+    private Date lastFreeFall;
     private int shakeCount = 0;
+    private int freeFallCount = 0;
     private long shakeTimeThreshold = 130;
+    private long freeFallTimeThreshold = 1000;
 
     /* Here we store the current values of acceleration, one for each axis */
     private float xAccel;
@@ -35,11 +40,14 @@ public class AccelListener implements SensorEventListener {
     private float yPreviousAccel;
     private float zPreviousAccel;
 
-    /* Used to suppress the first shaking */
+    /* Let's ignore the shake triggered when we're setting up */
     private boolean firstUpdate = true;
 
     /*What acceleration difference would we assume as a rapid movement? */
     public static float shakeThreshold = 4f;
+
+    /*What difference is acceptable between the force of gravity and the force on the device while being thrown*/
+    public static float thrownThreshold = 2f;
 
     /* Has a shaking motion been started (one direction) */
     private boolean shakeInitiated = false;
@@ -49,7 +57,7 @@ public class AccelListener implements SensorEventListener {
     }
 
     private void executeShakeAction() {
-        System.out.println("Calibrating = "+ShakePreference.calibrating);
+        System.out.println("Calibrating = " + ShakePreference.calibrating);
 
         if (ShakePreference.calibrating)
             ShakePreference.logShakeDif(averageDelta);
@@ -76,9 +84,22 @@ public class AccelListener implements SensorEventListener {
         }
     }
 
+    private void executeThrownAction(){
+        Action[] actionEnums = Action.values();
+        for (int i = 0; i < actionEnums.length - 1; i++) //-1 so it doesn't trigger Action.None
+            if (actionEnums[i] == Action.Thrown) {
+                AwareService.executeReaction(AwareService.reactions[i]);
+                i = actionEnums.length;
+            }
+    }
+
     @Override
     public void onSensorChanged(SensorEvent se) {
+        if (lastFreeFall == null) lastFreeFall = new Date();
         AwareService.accelerometer = se.values;
+
+        if (freeFalling(se.values))
+            executeThrownAction();
 
         if (ShakePreference.calibrating)
             shakeThreshold = 1.7f;
@@ -93,6 +114,28 @@ public class AccelListener implements SensorEventListener {
         } else if ((shakeInitiated) && (!isAccelerationChanged())) {
             shakeInitiated = false;
         }
+    }
+
+    private boolean freeFalling(float[] values){
+        double netAcceleration = Math.sqrt(values[0]*values[0]+values[1]*values[1]+values[2]*values[2]);
+        double dif = Math.abs(netAcceleration - SensorManager.GRAVITY_EARTH*2);
+        //If this sensor value says it's currently probably in freefall, increment the freefall count
+        if (dif < thrownThreshold)
+            freeFallCount++;
+        else //Otherwise, let's reset the freefall count
+            freeFallCount = 0;
+
+        if (freeFallCount!=0)
+            System.out.println("DIF FreeFallCount = "+freeFallCount);
+
+        if (freeFallCount>freeFallCountsNeeded) { //If it's been in free fall for long enough, sweet.
+            if (new Date().getTime()-lastFreeFall.getTime() > freeFallTimeThreshold) { //If it didn't trigger recently
+                lastFreeFall = new Date();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /* Store the acceleration values given by the sensor */

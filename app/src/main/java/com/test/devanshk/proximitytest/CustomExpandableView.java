@@ -61,6 +61,7 @@ public class CustomExpandableView extends RelativeLayout {
         this.contentLayout.setVisibility(GONE);
         this.clickableLayout.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+                System.out.println("DIF--------------------DIF");
                 if(CustomExpandableView.this.contentLayout.isShown()) {
                     CustomExpandableView.this.collapse();
                 } else {
