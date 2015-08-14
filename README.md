@@ -1,5 +1,7 @@
 # Aware
-![Banner](http://s29.postimg.org/wiu6dik2v/github_cover.png)
+<p align="center">
+  <img src="http://s29.postimg.org/wiu6dik2v/github_cover.png"/>
+</p>
 
 Aware detects motion gestures and lets you customize reactions to them. To say that in a more visually compelling way:
 
