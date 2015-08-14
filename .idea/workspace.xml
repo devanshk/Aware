@@ -10,10 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44cee7d3-0428-4723-a081-e64404ab9615" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/AccelListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/AccelListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/AwareService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/AwareService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/CustomExpandableView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/CustomExpandableView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="Aware.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,8 +63,8 @@
       <file leaf-file-name="AccelListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/AccelListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.397351">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.794702">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1816,8 +1813,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/test/devanshk/proximitytest/AccelListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.397351">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.794702">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
