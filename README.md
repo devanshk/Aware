@@ -3,7 +3,7 @@
   <img src="http://s29.postimg.org/wiu6dik2v/github_cover.png"/>
 </p>
 
-Aware detects motion gestures and lets you customize reactions to them. To say that in a more visually compelling way:
+Aware detects motion gestures and lets you customize reactions to them. To say that prettier:
 
 ![Tutorial](http://s11.postimg.org/xjohk9x5f/github_tutorial.png)
 
