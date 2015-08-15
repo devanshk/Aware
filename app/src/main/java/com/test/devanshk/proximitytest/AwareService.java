@@ -43,6 +43,8 @@ public class AwareService extends Service implements SensorEventListener{
     static AccelListener acelListener;
     static MagnetListener magListener;
     static Toast startCameraToast;
+    static PowerManager.WakeLock wakeLock;
+    static PowerManager pm;
 
     public static Reactions[] reactions = new Reactions[Action.values().length-1];
     static ArrayList<Trigger> triggers = new ArrayList<Trigger>();
@@ -179,10 +181,22 @@ public class AwareService extends Service implements SensorEventListener{
         switch (r){
             case WakeUp:
                 if (faceUp) {
-                    PowerManager pm = (PowerManager) instance.getSystemService(Context.POWER_SERVICE);
-                    PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+                    if (pm==null){
+                        pm = (PowerManager) instance.getSystemService(Context.POWER_SERVICE);
+                    }
+                    wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
                     wakeLock.acquire();
-                    wakeLock.release();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try{ Thread.sleep(750);
+                            wakeLock.release(); } catch(Exception e){
+                                e.printStackTrace();
+                                try{wakeLock.release();} catch(Exception f){f.printStackTrace();}
+                            }
+                        }
+                    }).start();
+
                 }
                 break;
             case StartCamera:

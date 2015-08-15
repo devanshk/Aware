@@ -76,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         expandableViews = new CustomExpandableView[AwareService.Action.values().length]; //Initializes the array with a spot for each detectable action
-        AwareService.Action[] actions = AwareService.Action.values();
+        final AwareService.Action[] actions = AwareService.Action.values();
         final AwareService.Reactions[] reactions = AwareService.Reactions.values();
 
         onOff = (Switch)findViewById(R.id.onOffSwitch);
@@ -103,24 +103,44 @@ public class MainActivity extends ActionBarActivity {
                     public void onClick(View v) {
                         Integer actionIndex = (Integer) v.getTag(R.id.TAG_ACTION_INDEX);
                         //Step 1: Make all the views white.
-                        for (View rv: reactionViews) {
+                        for (View rv : reactionViews) {
                             if (rv.getTag(R.id.TAG_ACTION_INDEX).equals(actionIndex)) { //If it's part of the same action
                                 rv.setBackgroundColor(getResources().getColor(R.color.unselected_reaction));
-                                TextView tv = (TextView)rv;
+                                TextView tv = (TextView) rv;
                                 tv.setTextColor(getResources().getColor(R.color.primary_text));
                             }
                         }
 
                         //Step 2: Make this one red
                         v.setBackgroundColor(getResources().getColor(R.color.accent));
-                        TextView tv = (TextView)v;
+                        TextView tv = (TextView) v;
                         tv.setTextColor(Color.WHITE);
 
                         //Step 3: Save the change in the code
-                        AwareService.reactions[actionIndex] = (AwareService.Reactions)v.getTag(R.id.TAG_REACTION);
+                        AwareService.reactions[actionIndex] = (AwareService.Reactions) v.getTag(R.id.TAG_REACTION);
 
                         //Step 4: Save them to preferences
                         AwareService.saveReactions();
+
+                        /* Bonus warning when you tap a "Thrown Into the Air reaction */
+                        if ( !prefs.getBoolean("warned",false) &&
+                                actions[(Integer)v.getTag(R.id.TAG_ACTION_INDEX)] == AwareService.Action.Thrown &&
+                                v.getTag(R.id.TAG_REACTION) != AwareService.Reactions.None) {
+                            View d = View.inflate(parent, R.layout.psa_dialog, null);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(parent);
+                            builder.setView(d);
+                            builder.setPositiveButton("Got it.", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.setCancelable(false);
+                            builder.show();
+
+                            editor.putBoolean("warned",true);
+                            editor.apply();
+                        }
                     }
                 });
 

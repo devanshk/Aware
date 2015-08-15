@@ -19,7 +19,7 @@ import java.util.Date;
  */
 public class AccelListener implements SensorEventListener {
     private final int shakesNeeded = 5;
-    private final int freeFallCountsNeeded = 2;
+    private final int freeFallCountsNeeded = 9;
     private static SharedPreferences prefs;
     private static float averageDelta = 4f;
 
@@ -28,7 +28,7 @@ public class AccelListener implements SensorEventListener {
     private int shakeCount = 0;
     private int freeFallCount = 0;
     private long shakeTimeThreshold = 130;
-    private long freeFallTimeThreshold = 1000;
+    private long freeFallTimeThreshold = 2000;
 
     /* Here we store the current values of acceleration, one for each axis */
     private float xAccel;
@@ -47,7 +47,7 @@ public class AccelListener implements SensorEventListener {
     public static float shakeThreshold = 4f;
 
     /*What difference is acceptable between the force of gravity and the force on the device while being thrown*/
-    public static float thrownThreshold = 2f;
+    public static float thrownThreshold = 3f;
 
     /* Has a shaking motion been started (one direction) */
     private boolean shakeInitiated = false;
@@ -127,6 +127,8 @@ public class AccelListener implements SensorEventListener {
 
         if (freeFallCount!=0)
             System.out.println("DIF FreeFallCount = "+freeFallCount);
+
+        if (lastFreeFall == null) lastFreeFall = new Date();
 
         if (freeFallCount>freeFallCountsNeeded) { //If it's been in free fall for long enough, sweet.
             if (new Date().getTime()-lastFreeFall.getTime() > freeFallTimeThreshold) { //If it didn't trigger recently
