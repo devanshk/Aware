@@ -14,6 +14,8 @@ Every time the proximity sensor's value changes, it's saved with a timestamp. If
 Every 100ms, the accelerometer's value is saved. If the difference in acceleration is greater than a certain threshold, it counts as a shake. Multiple shakes like this are needed during a short period of time to trigger the shake action.
 ###Pulled out of pocket
 Remember that every proximity sensor value change is stored with a timestamp. If the sensor detects that there's nothing above it and it's been covered up for longer than a certain value, it determines that it was pulled out of a pocket. This can also be triggered if there was something on top of the phone for a while, since orientation checking hasn't yet been implemented.
+###Thrown into the air
+When the phone flies up, the only force acting on it is gravity, meaning its acceleration is approximately 9.8 m/s^2. We use the accelerometer to check this, add a wider threshold to account for slight spins on the phone as it soars through the air, and wait until we see 8 consecutive measurements of it being in freefall to trigger the thrown action.
 
 ##Infinite Expandability
 With the setup, adding an action is as simple as writing code to detect it, then adding that option to the enum. Adding a reaction is equally easy: just write the method that should be triggered, then add it to the enum and executeReaction method.
