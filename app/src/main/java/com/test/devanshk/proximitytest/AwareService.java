@@ -181,32 +181,40 @@ public class AwareService extends Service implements SensorEventListener{
         if (r == null)
             return;
 
-        if (prefs.getBoolean("vibrate", true)){
-            vibrate();
-        }
-
         switch (r){
             case WakeUp:
                 if (faceUp) {
                     if (pm==null){
                         pm = (PowerManager) instance.getSystemService(Context.POWER_SERVICE);
                     }
-                    wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
-                    wakeLock.acquire();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try{ Thread.sleep(750);
-                            wakeLock.release(); } catch(Exception e){
-                                e.printStackTrace();
-                                try{wakeLock.release();} catch(Exception f){f.printStackTrace();}
-                            }
-                        }
-                    }).start();
+                    if (!pm.isScreenOn()) { //If the screen is currently off, let's turn it on
 
+                        vibrate();
+
+                        wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+                        wakeLock.acquire();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(750);
+                                    wakeLock.release();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    try {
+                                        wakeLock.release();
+                                    } catch (Exception f) {
+                                        f.printStackTrace();
+                                    }
+                                }
+                            }
+                        }).start();
+                    }
                 }
                 break;
             case StartCamera:
+                vibrate();
+
                 //First first, let them know we're starting the camera
                 startCameraToast.show();
                 //...and also wake it up
@@ -221,6 +229,8 @@ public class AwareService extends Service implements SensorEventListener{
                 instance.startActivity(intent);
                 break;
             case ToggleFlashlight:
+                vibrate();
+
                 if (!isFlashOn) { //Let's turn the flash on if it's off
                     getCamera();
                     if (camera == null || params == null) {
@@ -297,8 +307,10 @@ public class AwareService extends Service implements SensorEventListener{
     }
 
     private static void vibrate(){
-        vab = (Vibrator)instance.getSystemService(VIBRATOR_SERVICE);
-        vab.vibrate(Integer.parseInt(prefs.getString("vibration_time",""+vibrationDuration)));
+        if (prefs.getBoolean("vibrate", true)) {
+            vab = (Vibrator) instance.getSystemService(VIBRATOR_SERVICE);
+            vab.vibrate(Integer.parseInt(prefs.getString("vibration_time", "" + vibrationDuration)));
+        }
     }
 
     class MagnetListener implements SensorEventListener {

@@ -8,8 +8,8 @@ android {
         applicationId "com.test.devanshk.proximitytest"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 9
-        versionName "1.5"
+        versionCode 11
+        versionName "1.65"
     }
     buildTypes {
         release {

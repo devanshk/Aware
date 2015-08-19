@@ -130,7 +130,6 @@ public class WaveTimePreference extends DialogPreference {
         editor.putInt("pref_key_wave_time", Math.round(averageTime));
         editor.commit();
         instance.setSummary(""+Math.round(averageTime)+" ms");
-
         instance.getDialog().dismiss();
     }
 
