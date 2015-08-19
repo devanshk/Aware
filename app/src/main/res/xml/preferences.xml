@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="Settings"
+        android:title="Sensing"
         android:key="pref_key_calibration_settings">
         <com.test.devanshk.proximitytest.WaveTimePreference
             android:title="Calibrate Hand Wave"
@@ -10,5 +10,22 @@
         <com.test.devanshk.proximitytest.ShakePreference
             android:title="Calibrate Shake"
             android:key="pref_key_shake_dif"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Bonus"
+        android:key="pref_key_bonus_settings">
+
+        <CheckBoxPreference
+            android:title="Vibrate"
+            android:key="vibrate"
+            android:summary="Every time an action is triggered"/>
+
+        <EditTextPreference
+            android:title="Vibration Duration"
+            android:key="vibration_time"
+            android:inputType="number"
+            android:dependency="vibrate"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

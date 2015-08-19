@@ -49,7 +49,7 @@ public class WaveTimePreference extends DialogPreference {
         View v = inflater.inflate(R.layout.calibrate_wave_dialog,null);
 
         root = (LinearLayout)v.findViewById(R.id.calibrate_wave_dialog_root);
-        for (int i=0;i<waves;i++){
+        for (int i=0;i < waves;i++){
             View item = inflater.inflate(R.layout.item_detect_wave,null);
             TextView waveTV = (TextView)item.findViewById(R.id.item_wave_number);
             waveTV.setText("Wave "+(i+1));
@@ -136,7 +136,6 @@ public class WaveTimePreference extends DialogPreference {
 
     @Override
     protected void onDialogClosed(boolean positiveResult) {
-        calibrating=false;
         super.onDialogClosed(positiveResult);
     }
 }

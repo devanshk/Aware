@@ -14,6 +14,7 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -29,7 +30,8 @@ import java.util.Date;
  */
 public class AwareService extends Service implements SensorEventListener{
     private static final boolean selfish = false;
-    private static final int buffer = 80;
+    private static final int buffer = 50;
+    private static final int vibrationDuration = 75;
 
     enum Action {Wave, Shake, PulledOutOfPocket, Thrown, None}
     enum Reactions {None, WakeUp, StartCamera, ToggleFlashlight}
@@ -45,6 +47,7 @@ public class AwareService extends Service implements SensorEventListener{
     static Toast startCameraToast;
     static PowerManager.WakeLock wakeLock;
     static PowerManager pm;
+    static Vibrator vab;
 
     public static Reactions[] reactions = new Reactions[Action.values().length-1];
     static ArrayList<Trigger> triggers = new ArrayList<Trigger>();
@@ -160,7 +163,7 @@ public class AwareService extends Service implements SensorEventListener{
         if (WaveTimePreference.calibrating)
             if (millisPassed<waveTime && now.isClear()) //If the time passed is less than the max time taken to wave and the screen is uncovered
                 return Action.Wave;
-        if (millisPassed<waveTime+buffer && millisPassed>waveTime-buffer*1.5 && now.isClear()) //If the time passed is less than the max time taken to wave and the screen is uncovered
+        if (millisPassed<waveTime+buffer && millisPassed>waveTime-buffer*1.15 && now.isClear()) //If the time passed is less than the max time taken to wave and the screen is uncovered
             return Action.Wave;
 
         //If it wasn't a wave, let's figure out if it entered or exited a pocket.
@@ -177,6 +180,10 @@ public class AwareService extends Service implements SensorEventListener{
     public static void executeReaction(Reactions r){
         if (r == null)
             return;
+
+        if (prefs.getBoolean("vibrate", true)){
+            vibrate();
+        }
 
         switch (r){
             case WakeUp:
@@ -242,7 +249,6 @@ public class AwareService extends Service implements SensorEventListener{
                     }
                 }
                 break;
-
         }
     }
 
@@ -288,6 +294,11 @@ public class AwareService extends Service implements SensorEventListener{
             } catch (RuntimeException e) {
             }
         }
+    }
+
+    private static void vibrate(){
+        vab = (Vibrator)instance.getSystemService(VIBRATOR_SERVICE);
+        vab.vibrate(Integer.parseInt(prefs.getString("vibration_time",""+vibrationDuration)));
     }
 
     class MagnetListener implements SensorEventListener {
